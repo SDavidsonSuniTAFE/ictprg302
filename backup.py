@@ -3,6 +3,7 @@
 Author: Shaun Davidson
 shaunmd107@gmail.com
 Version 1.0
+MIT Copyright Licence
 """
 import sys
 import os
@@ -48,7 +49,10 @@ def main():
     dateTimeStamp = datetime.now().strftime("%Y%m%d-%H%M%S") #D&T stamp #Timestamp not working properly, hour value always starts with 0 i.e 11:55:30 is displayed 015530
     argCount = len(sys.argv)
     if argCount != 2: #if no job is giving or multiple jobs are given
-        Error("jobname", "jobname is missing from the command line", dateTimeStamp)
+        if argCount < 2:
+            Error("jobname", "jobname is missing from the command line", dateTimeStamp)
+        else:
+            Error("jobname", "too many jobs are entered in the command line", dateTimeStamp)
     else:
         jobName = sys.argv[1]
         if jobName not in jobs: #if job doesn't exist
@@ -56,10 +60,10 @@ def main():
         else:
             for srcPath in jobs[jobName]:
                 if not os.path.exists(srcPath): #if the FILE DESTINATION doesn't exist i.e the job name exists but leads to a file that doesn't exist
-                 Error("source path not found", f"path {srcPath} does not exist", dateTimeStamp)
+                 Error("source path not found", f"source path {srcPath} does not exist", dateTimeStamp)
                 else:
-                    if not os.path.exists(dstPath): #if the backup destination doesn't exist. if this is the case simply create the destination
-                        print(f"ERROR: path {dstPath} does not exist")
+                    if not os.path.exists(dstPath): #if the backup destination doesn't exist
+                        Error("job  path", f"path {dstPath} does not exist", dateTimeStamp)
                     else:
                     
                         srcDetails = pathlib.PurePath(srcPath) #Variable that is the last part of the source path i.e "file1"

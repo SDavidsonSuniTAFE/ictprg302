@@ -3,7 +3,7 @@ jobs = {'job1' : ['/home/ec2-user/environment/ictprg302/file1.dat'],
     'job3' : ['/home/ec2-user/environment/ictprg302/file2.txt'],
     'job4' : ["/home/ec2-user/environment/ictprg302/file3.txt", "/home/ec2-user/environment/ictprg302/file4.txt"]}
     
-dstPath = '/home/ec2-user/environment/ictprg302/backups'
+dstPath = '/home/ec2-user/environment/ictprg302/backups/'
 
 logPath = "/home/ec2-user/environment/ictprg302/backup.log"
 
